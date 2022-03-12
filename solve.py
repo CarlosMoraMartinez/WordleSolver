@@ -4,7 +4,7 @@ from random import sample
 from wordle import *
 
 N_GAMES = 1000
-METHOD = 8 #This sets the algorithm to choose the next word
+METHOD = 10 #This sets the algorithm to choose the next word
 
 """
 Scores for each method out of 1000 trials:
@@ -27,7 +27,7 @@ Using reversed ordering:
 9	0.659	4.76
 10	0.665	4.76
 
-Using 1/ of sorted dictionary:
+Using 1/2 of sorted dictionary:
 
 6	0.918	4.27
 8	0.936	4.06
