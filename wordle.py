@@ -9,6 +9,9 @@ CORRECT = "^"
 WRONG = "_"
 
 class Wordle:    
+    """
+	The Wordle game. With this script you can play from the console.
+    """
     def __init__(self, dict_file = DICT_FILE, wordsize = 5, max_attempts = 6):
         self.wordsize = wordsize
         self.max_attempts = max_attempts
