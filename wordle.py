@@ -59,19 +59,22 @@ class Wordle:
                     self.failed_letters.add(a)
             self.tried_words.append((word, wordstate))
             return self.attempts, False
+    def printInfo(self):
+        print(f"Letras descartadas: {', '.join(self.failed_letters)}")
+        print(f"Letras mal colocadas: {', '.join(self.misplaced_letters)}")
+        print(f"Posiciones probadas para cada letra: ")
+        print(self.misplaced_letters)
+        palabrasprobadas = ''.join([i + '\n' + j + '\n--\n' for i, j in self.tried_words])
+        print(f"Palabras probadas:\n{palabrasprobadas}")
+        print(f"{self.state}  - ({self.attempts} de {self.max_attempts} intentos)")
+        if CHEATING:
+                print("palabra (cheating ON): " + self.word)        
     def play_console(self):
         self.reset()
         has_won = False
         while(self.canTry() and not has_won):
-            print(f"Letras descartadas: {', '.join(self.failed_letters)}")
-            print(f"Letras mal colocadas: {', '.join(self.misplaced_letters)}")
-            print(f"Posiciones probadas para cada letra: ")
-            print(self.misplaced_letters)
-            palabrasprobadas = ''.join([i + '\n' + j + '\n--\n' for i, j in self.tried_words])
-            print(f"Palabras probadas:\n{palabrasprobadas}")
-            if CHEATING:
-                print("palabra (cheating ON): " + self.word)
-            word = input(f"Prueba una palabra de {self.wordsize} letras: \t{self.state}   ({self.attempts} de {self.max_attempts} intentos) \n\n").upper()
+            self.printInfo()
+            word = input(f"Prueba una palabra de {self.wordsize} letras:)\n").upper()
             word = unidecode.unidecode(word)
             n, has_won = self.tryWord(word)
         self.endGame(has_won)
